@@ -174,15 +174,15 @@
 
 		async function getAndShowVal () {
 		  var val = "Contratante:";
-		  val + window.SimpleStorage.methods.getContratante().call();
-		  val + "  Contratado:";
-		  val + window.SimpleStorage.methods.getContratado().call();
-		  val + "  ValorContrato:";
-		  val + window.SimpleStorage.methods.getValor().call();
-		  val + "  DataRealização:";
-		  val + window.SimpleStorage.methods.getTermino().call();
-		  val + "  DataFimdaGarantia:";
-		  val + window.SimpleStorage.methods.getGarantia().call();
+		  val.concat(window.SimpleStorage.methods.getContratante().call());
+		  val.concat("  Contratado:");
+		  val.concat(window.SimpleStorage.methods.getContratado().call());
+		  val.concat("  ValorContrato:");
+		  val.concat(window.SimpleStorage.methods.getValor().call());
+		  val.concat("  DataRealização:");
+		  val.concat(window.SimpleStorage.methods.getTermino().call());
+		  val.concat("  DataFimdaGarantia:");
+		  val.concat(window.SimpleStorage.methods.getGarantia().call());
 			document.getElementById("showInfo").innerHTML=val;
 		};
 
