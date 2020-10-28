@@ -188,32 +188,32 @@
 
 		async function setVal () {
 			var val = document.getElementById("storedData").value;
-		  window.SimpleStorage.methods.servicoconcluido().send(value, {from:window.coinbase});
+		  window.SimpleStorage.methods.servicoconcluido().send(val, {from:window.coinbase});
 		}
 
 		async function setContratante () {
 			var val = document.getElementById("storedData1").value;
-		  window.SimpleStorage.methods.setContratante(value).send(value, {from:window.coinbase});
+		  window.SimpleStorage.methods.setContratante(val).send(val, {from:window.coinbase});
 		}
 
 		async function setContratado () {
 			var val = document.getElementById("storedData2").value;
-		  window.SimpleStorage.methods.setContratado(value).send(value, {from:window.coinbase});
+		  window.SimpleStorage.methods.setContratado(val).send(val, {from:window.coinbase});
 		}
 
 		async function setValor () {
 			var val = document.getElementById("storedData3").value;
-		  window.SimpleStorage.methods.setValor(value).send(value, {from:window.coinbase});
+		  window.SimpleStorage.methods.setValor(val).send(val, {from:window.coinbase});
 		}
 
 		async function setTermino () {
 			var val = document.getElementById("storedData4").value;
-		  window.SimpleStorage.methods.setTermino(value).send(value, {from:window.coinbase});
+		  window.SimpleStorage.methods.setTermino(val).send(val, {from:window.coinbase});
 		}
 		
 		async function setGarantia () {
 			var val = document.getElementById("storedData5").value;
-		  window.SimpleStorage.methods.setGarantia(value).send(value, {from:window.coinbase});
+		  window.SimpleStorage.methods.setGarantia(val).send(val, {from:window.coinbase});
 		}
 
 		if (!ethEnabled()) {
