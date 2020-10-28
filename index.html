@@ -4,12 +4,12 @@
 	<title>Simple Storage</title>
 	<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
 	<script type="text/javascript">
-		const contract_address = "0x80aec1d099A6038Cd0169625A0C6e8c2e46b68a5";
+		const contract_address = "0x96A7a23f9D668Fc3E5D839A3116E4D159d2e1262";
 
 		const contract_abi = [
 			{
 				"inputs": [],
-				"name": "getstatus",
+				"name": "getStatus",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -22,7 +22,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "getcontratante",
+				"name": "getContratante",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -35,7 +35,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "getcontratado",
+				"name": "getContratado",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -48,7 +48,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "getvalor",
+				"name": "getValor",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -61,7 +61,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "gettermino",
+				"name": "getTermino",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -74,7 +74,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "getgarantia",
+				"name": "getGarantia",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -88,12 +88,71 @@
 			{
 				"inputs": [
 					{
-						"internalType": "bool",
-						"name": "_realizado",
-						"type": "bool"
+						"internalType": "address payable",
+						"name": "_contratante",
+						"type": "address payable"
 					}
 				],
-				"name": "servicoconcluido",
+				"name": "setContratante",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_contratado",
+						"type": "address payable"
+					}
+				],
+				"name": "setContratado",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_valor",
+						"type": "uint256"
+					}
+				],
+				"name": "setValor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_prazoconclusao",
+						"type": "uint256"
+					}
+				],
+				"name": "setTermino",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_prazogarantia",
+						"type": "uint256"
+					}
+				],
+				"name": "setGarantia",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "servicoConcluido",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
@@ -124,12 +183,37 @@
 		  val + window.SimpleStorage.methods.gettermino().call();
 		  val + "  DataFimdaGarantia:";
 		  val + window.SimpleStorage.methods.getgarantia().call();
-			document.getElementById("storedData").value = await val;
+			document.getElementById("showInfo").innerHTML=val;
 		};
 
 		async function setVal () {
 			var val = document.getElementById("storedData").value;
-		  window.SimpleStorage.methods.servicoconcluido(1).send(1, {from:window.coinbase});
+		  window.SimpleStorage.methods.servicoconcluido().send(value, {from:window.coinbase});
+		}
+
+		async function setContratante () {
+			var val = document.getElementById("storedData1").value;
+		  window.SimpleStorage.methods.setContratante(value).send(value, {from:window.coinbase});
+		}
+
+		async function setContratado () {
+			var val = document.getElementById("storedData2").value;
+		  window.SimpleStorage.methods.setContratado(value).send(value, {from:window.coinbase});
+		}
+
+		async function setValor () {
+			var val = document.getElementById("storedData3").value;
+		  window.SimpleStorage.methods.setValor(value).send(value, {from:window.coinbase});
+		}
+
+		async function setTermino () {
+			var val = document.getElementById("storedData4").value;
+		  window.SimpleStorage.methods.setTermino(value).send(value, {from:window.coinbase});
+		}
+		
+		async function setGarantia () {
+			var val = document.getElementById("storedData5").value;
+		  window.SimpleStorage.methods.setGarantia(value).send(value, {from:window.coinbase});
 		}
 
 		if (!ethEnabled()) {
@@ -144,7 +228,20 @@
 </head>
 <body>
 	<button id="InfoContrato" onclick="getAndShowVal()">Get</button>
+	<span id="showInfo"></span>
+	<br></br>
 	StoredData: <input type="text" name="storedData" id="storedData">
-	<button id="Serviço foi realizado e aprovado" onclick="setVal()">Set</button>
+	<button id="Serviço concluido" onclick="setVal()">Set</button>
+	<br></br>
+	StoredData1: <input type="text" name="storedData1" id="storedData1">
+	<button id="Contratante" onclick="setContratante()">Set</button>
+	StoredData2: <input type="text" name="storedData2" id="storedData2">
+	<button id="Contratado" onclick="setContratado()">Set</button>
+	StoredData3: <input type="text" name="storedData3" id="storedData3">
+	<button id="Valor Contrato" onclick="setValor()">Set</button>
+	StoredData4: <input type="text" name="storedData4" id="storedData4">
+	<button id="Prazo para conclusao" onclick="setTermino()">Set</button>
+	StoredData5: <input type="text" name="storedData5" id="storedData5">
+	<button id="Prazo de garantia" onclick="setGarantia()">Set</button>
 </body>
 </html>
